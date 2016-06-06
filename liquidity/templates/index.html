@@ -1,0 +1,21 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+{% block title %}django-bootstrap3{% endblock %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+{% block content %}
+    This is <em>bootstrap3</em> for <strong>Django</strong>.
+{% endblock %}
+
+{# Display a form #}
+<form action="/url/to/submit/" method="post" class="form">
+  {% csrf_token %}
+  {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      {% bootstrap_icon "star" %} Submit
+    </button>
+  {% endbuttons %}
+</form>
