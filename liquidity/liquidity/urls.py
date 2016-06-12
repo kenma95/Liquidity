@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.contrib import admin
 import views
 urlpatterns = [
-    url(r'^$', 'liqudity.views.index', name='home'),
+    url(r'^$', 'liquidity.views.index', name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^login/$','liquidity.views.login'),
     url(r'^register/$','liquidity.views.register'),
