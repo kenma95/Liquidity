@@ -1,16 +1,21 @@
-{# Load the tag library #}
+{% extends 'base.html' %}
 {% load bootstrap3 %}
 
-{% bootstrap_css %}
-{% bootstrap_javascript jquery=1 %}
-
-
-{% include 'navbar.html' %}
+{% block title %}Liquidity{% endblock %}
 
 {% block content %}
-    This is <em>bootstrap3</em> for <strong>Django</strong>.
-    <h1>Liquidity</h1>
+    <div class="jumbotron">
+  <div class="container">
+  <h1>Liquidity</h1>
+  <p>Liquidity is a real time data-oriented website dedicated to provide instantaneously data streaming and visualization service.
+      <br>
+      <br>Users are able to transfer time-based data to the server under certain interfaces,
+      and Liquidity will receive, analyze and visualize the data to the front-end website.
+</p>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+  </div>
+</div>
+
 {% endblock %}
 
-{% bootstrap_button "Logout" button_type="submit" button_class="btn-primary"  href="logout" %}
-{% include 'footer.html' %}
+
