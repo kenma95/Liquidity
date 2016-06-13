@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/$','liquidity.views.login'),
     url(r'^register/$','liquidity.views.register'),
+    url(r'^logout/$', 'liquidity.views.logout_view'),
 
 ]

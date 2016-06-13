@@ -11,11 +11,12 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.decorators import login_required  
   
 from .forms import LoginForm,RegForm 
-  
+from django.contrib.auth import logout
 
 
 def index(request):
     return render(request, 'index.html', {})
+
 
 def register(request):
     if request.method == 'GET':  
@@ -33,9 +34,7 @@ def register(request):
             else:  
                 return render_to_response('register.html', RequestContext(request, {'form': form,'already_existed':True}))  
         else:  
-            return render_to_response('register.html', RequestContext(request, {'form': form,}))  
-
-
+            return render_to_response('register.html', RequestContext(request, {'form': form,}))
 
 
 def login(request):  
@@ -56,4 +55,8 @@ def login(request):
         else:  
             return render_to_response('login.html', RequestContext(request, {'form': form,}))  
 
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
 

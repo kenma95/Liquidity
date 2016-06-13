@@ -4,25 +4,13 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery=1 %}
 
- <head>
-<script scr="frame.js"></script>
-</head> 
+
 {% include 'navbar.html' %}
 
 {% block content %}
     This is <em>bootstrap3</em> for <strong>Django</strong>.
+    <h1>Liquidity</h1>
 {% endblock %}
 
-{# Display a form #}
-<form action="/url/to/submit/" method="post" class="form">
-  {% csrf_token %}
-  {% buttons %}
-    <button type="submit" class="btn btn-primary">
-      {% bootstrap_icon "star" %} Submit
-    </button>
-  {% endbuttons %}
-
-</form>
-<button id = "hide" class="btn btn-primary" type="button" >
-  Messages <span class="badge">4</span>
-</button>
+{% bootstrap_button "Logout" button_type="submit" button_class="btn-primary"  href="logout" %}
+{% include 'footer.html' %}
