@@ -15,7 +15,14 @@ from django.contrib.auth import logout
 
 
 def index(request):
-    return render(request, 'index.html', {})
+    if request.user.is_authenticated():
+        return render(request, 'project.html', {})
+    else:
+        return render(request, 'index.html', {})
+
+
+def about(request):
+    return render(request, 'about.html', {})
 
 
 def register(request):
@@ -49,7 +56,7 @@ def login(request):
             user = auth.authenticate(username=username, password=password)  
             if user is not None and user.is_active:  
                 auth.login(request, user)  
-                return render_to_response('index.html', RequestContext(request))  
+                return render_to_response('project.html', RequestContext(request))
             else:  
                 return render_to_response('login.html', RequestContext(request, {'form': form,'password_is_wrong':True}))  
         else:  

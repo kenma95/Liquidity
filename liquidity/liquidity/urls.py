@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^login/$','liquidity.views.login'),
     url(r'^register/$','liquidity.views.register'),
     url(r'^logout/$', 'liquidity.views.logout_view'),
-
+    url(r'^about/$', 'liquidity.views.about'),
 ]
