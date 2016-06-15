@@ -21,7 +21,8 @@ class LoginForm(forms.Form):
                 'placeholder':u"Password",  
             }  
         ),  
-    )     
+    )
+
     def clean(self):  
         if not self.is_valid():  
             raise forms.ValidationError(u"All required")  

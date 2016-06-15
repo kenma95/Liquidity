@@ -7,6 +7,142 @@
     <div class="jumbotron">
   <div class="container">
   <h1>Liquidity</h1>
+      <script src="/static/js/RGraph/libraries/RGraph.common.core.js"></script>
+      <script src="/static/js/RGraph/libraries/RGraph.line.js"></script>
+      <script>
+
+
+
+    window.onload = function ()
+    {
+        /**
+        * Define the varibles that we're going to use
+        */
+
+        // Refresh rate (in milliseconds - 1000 per second)
+        //
+        // *** This is not actually used on this page because ***
+        // *** setTimeout is not used - requestAnimationFrame ***
+        // *** is used instead which handles the time for you ***
+        var delay = 40;
+        // Number of points shown on the chart
+        var points = 1200;
+        // Number of points shown on the chart
+        var data = new Array(points);
+
+        // A shortcut reference to the global RGraph object
+        var RG = RGraph;
+
+        // A shortcut reference to the global Math object
+        var ma = Math;
+
+        // Max Y value on the chart
+        var max = 100;
+
+        // min Y value on the chart
+        var min = 0;
+
+        // Halfway between the min and max
+        var num = (( (max - min) / 2) + min);
+
+        // Generate the labels that are across the X axis. Hard-coded sadly...
+        var labels = ['20s', '18s','16s','14s','12s','10s','8s','6s','4s','2s','0s'];
+
+        // The increase/decrease of each iteration
+        var delta = 2;
+
+        /**
+        * Draw the chart. On subsequent draws this chart is updated with new data and
+        * redrawn This is faster than creating a whole new object and drawing that.
+        */
+        document.getElementById("cvs").style.backgroundColor = 'rgba(158, 167, 184, 0.2)';
+        window.addEventListener('resize', resizeCanvas, false);
+
+    function resizeCanvas() {
+            canvas.width = 0.6*window.innerWidth;
+            /**canvas.height = window.innerHeight;
+
+
+             * Your drawings need to be inside this function otherwise they will be reset when
+             * you resize the browser window and the canvas goes will be cleared.
+             */
+    }
+
+        var obj = new RGraph.Line({
+            id: 'cvs',
+            data: data,
+            options: {
+                gutterLeft: 35,
+                ymax: max,
+                tickmarks: null,
+                linewidth: 1,
+                shadow: null,
+                backgroundGridVlines: false,
+                backgroundGridBorder: false,
+                backgroundGridColor: '#eee',
+                color: 'black',
+                numxticks: 5,
+                axisColor: '#FFFFFF',
+                textColor: '#FFFFFF',
+                textSize: 14,
+                colors: ['red'],
+                labels: labels,
+                noxaxis: true,
+                textAccessible: true
+            }
+        }).draw();
+
+
+        /**
+        * This is the main draw function that is called multiple times per
+        * second to update the chart with new data. It:
+        *
+        * 1. Clears the canvas so that it's ready to be drawn on again
+        * 2. .shift()s a piece of data off of the rear of the Line chart internal data
+        *    variable
+        * 3. .push()s  a new piece of data on to the end of the same array
+        * 4. Draws the chart again
+        */
+        function draw()
+        {
+            // Clear (NOT reset) the canvas
+            RG.clear(obj.canvas);
+
+            // Generate a random number between -5 and 5 and add it to the num
+            // variable. Adding asmall change instead of generating a whole new
+            // number result in a gentler change.
+            num += RG.random(-1 * delta, delta);
+
+            // Limit the num variable to min - max
+            num = ma.max(min, num);
+            num = ma.min(max, num);
+
+            // Remove a number from the front of the data array
+            obj.original_data[0].shift();
+
+            // Add the new number on to end of the data array
+            obj.original_data[0].push(num);
+
+            // Draw the chart
+            obj.draw();
+
+            // Call this function again after the delay (using requestAnimationFrame
+            // NOT setTimeout) This function is a compatibility wrapper around
+            // requestAnimationFrame
+            RG.Effects.updateCanvas(draw);
+        }
+
+        draw();
+    };
+</script>
+
+
+      <canvas id="cvs" width="1080" height="250" >
+
+
+    [No canvas support]
+</canvas>
+<br>
   <p>Liquidity is a real time data-oriented website dedicated to provide instantaneously data streaming and visualization service.
       <br>
       <br>Users are able to transfer time-based data to the server under certain interfaces,

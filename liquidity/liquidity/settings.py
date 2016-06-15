@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
+    'user_profile',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -137,8 +138,7 @@ BOOTSTRAP3 = {
     'base_url': '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/',
 
     # The complete URL to the Bootstrap CSS file (None means derive it from base_url)
-    'css_url': None,
-
+    'css_url': "https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/superhero/bootstrap.min.css",
     # The complete URL to the Bootstrap CSS file (None means no theme)
     'theme_url': None,
 

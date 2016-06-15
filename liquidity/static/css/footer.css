@@ -25,6 +25,16 @@ body {
 body > .container {
   padding: 60px 15px 0;
 }
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+
 .container .text-muted {
   margin: 20px 0;
 }
